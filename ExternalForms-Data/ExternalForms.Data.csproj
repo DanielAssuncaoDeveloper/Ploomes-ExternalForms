@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalForms-Domain\ExternalForms.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
