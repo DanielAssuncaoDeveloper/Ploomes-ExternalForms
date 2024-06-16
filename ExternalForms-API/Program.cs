@@ -1,9 +1,15 @@
+using ExternalForms_Data.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Inicializando conexão com banco de dados
+builder.Services.AddScoped(x => 
+    new DatabaseConnection(
+        builder.Configuration.GetConnectionString("ExternalForms") ?? "")
+    );
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
