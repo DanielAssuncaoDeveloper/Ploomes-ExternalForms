@@ -1,4 +1,5 @@
-﻿using ExternalForms_Domain.Entities.AnswerField;
+﻿using ExternalForms_Data.Mapping;
+using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.Answers;
 using ExternalForms_Domain.Entities.Archive;
 using ExternalForms_Domain.Entities.CustomField;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExternalForms_Data
 {
-    internal class ExternalFormsContext : DbContext
+    public class ExternalFormsContext : DbContext
     {
         private readonly string _stringConnection;
 
@@ -23,7 +24,7 @@ namespace ExternalForms_Data
 
         #endregion
 
-        internal ExternalFormsContext(string stringConnection)
+        public ExternalFormsContext(string stringConnection)
         {
             _stringConnection = stringConnection;
         }
@@ -31,6 +32,11 @@ namespace ExternalForms_Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_stringConnection);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnswerMapping).Assembly);
         }
 
         internal void ExecuteMigration()
