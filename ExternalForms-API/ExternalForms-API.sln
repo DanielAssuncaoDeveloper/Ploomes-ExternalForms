@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalForms.API", "ExternalForms.API.csproj", "{A21AD720-BCF5-4888-B04D-2A313A4240D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalForms.API", "ExternalForms.API.csproj", "{A21AD720-BCF5-4888-B04D-2A313A4240D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalForms.Data", "..\ExternalForms-Data\ExternalForms.Data.csproj", "{7B8BD7E7-A717-4DB7-92E6-17839AC64FC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalForms.Data", "..\ExternalForms-Data\ExternalForms.Data.csproj", "{7B8BD7E7-A717-4DB7-92E6-17839AC64FC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalForms.Domain", "..\ExternalForms-Domain\ExternalForms.Domain.csproj", "{97E5FB1B-FD69-4BD7-81C2-5F2C569789BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalForms.Domain", "..\ExternalForms-Domain\ExternalForms.Domain.csproj", "{97E5FB1B-FD69-4BD7-81C2-5F2C569789BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Application", "01 - Application", "{705893E1-0F4D-4C70-8394-D3A5B0E3C130}"
 EndProject
