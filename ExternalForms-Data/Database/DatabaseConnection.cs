@@ -2,7 +2,7 @@
 {
     public class DatabaseConnection
     {
-        internal ExternalFormsContext DbContext { get; set; }
+        internal ExternalFormsContext DbContext { get; set; } 
 
         public DatabaseConnection(string stringConnection)
         {
