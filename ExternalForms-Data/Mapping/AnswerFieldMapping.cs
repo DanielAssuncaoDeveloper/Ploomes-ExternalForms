@@ -28,7 +28,7 @@ namespace ExternalForms_Data.Mapping
             builder.Property(x => x.TextAnswer)
                 .HasColumnName("text_answer")
                 .HasColumnType("text")
-                .HasDefaultValue();
+                .HasDefaultValue(string.Empty);
 
             builder.Property(x => x.NumericAnswer)
                 .HasColumnName("numeric_answer")
