@@ -1,4 +1,5 @@
-﻿using ExternalForms_Data.Mapping;
+﻿using ExternalForms_Data.Exceptions;
+using ExternalForms_Data.Mapping;
 using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.Answers;
 using ExternalForms_Domain.Entities.Archive;
@@ -45,9 +46,9 @@ namespace ExternalForms_Data
             {
                 Database.Migrate();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception($"Ocorreu um erro ao executar um script de migração. Ultimo script executado: {Database.GetPendingMigrations().FirstOrDefault()}", ex);
+                throw new DataLayerException($"Ocorreu um erro ao executar um script de migração. Ultimo script executado: {Database.GetPendingMigrations().FirstOrDefault()}");
             }
         }
 
@@ -58,9 +59,9 @@ namespace ExternalForms_Data
                 Database.OpenConnection();
                 Database.CloseConnection();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.", ex);
+                throw new DataLayerException("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.");
             }
         }
     }
