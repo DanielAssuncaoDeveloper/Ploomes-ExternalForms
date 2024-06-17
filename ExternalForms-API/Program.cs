@@ -1,4 +1,4 @@
-using ExternalForms_Data;
+using ExternalForms_API.HandlerExceptions;
 using ExternalForms_Data.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseProblemDetailsExceptionHandler();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
