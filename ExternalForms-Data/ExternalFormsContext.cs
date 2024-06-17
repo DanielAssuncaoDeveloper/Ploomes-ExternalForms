@@ -1,5 +1,7 @@
 ﻿using ExternalForms_Data.Exceptions;
 using ExternalForms_Data.Mapping;
+using ExternalForms_Domain.Agreements.Entities;
+using ExternalForms_Domain.Commum.Utils;
 using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.Answers;
 using ExternalForms_Domain.Entities.Archive;
@@ -30,6 +32,7 @@ namespace ExternalForms_Data
             _stringConnection = stringConnection;
         }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_stringConnection);
@@ -39,6 +42,19 @@ namespace ExternalForms_Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnswerMapping).Assembly);
         }
+
+        public override int SaveChanges()
+        {
+            FillStandardFields();
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            FillStandardFields();
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
 
         internal void ExecuteMigration()
         {
@@ -62,6 +78,32 @@ namespace ExternalForms_Data
             catch (Exception)
             {
                 throw new DataLayerException("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.");
+            }
+        }
+
+
+        private void FillStandardFields()
+        {
+            ChangeTracker.DetectChanges();
+
+            foreach (var entrieTracked in ChangeTracker.Entries())
+            {
+                var entity = entrieTracked.Entity;
+                var table = entity as IEntityBase;
+
+                if (table is null)
+                {
+                    continue;
+                }
+
+                if (entrieTracked.State == EntityState.Added)
+                {
+                    table.CreatedAt = DatetimeUtils.GetDateTime();
+                }
+                if (entrieTracked.State == EntityState.Modified)
+                {
+                    table.UpdatedAt = DatetimeUtils.GetDateTime();
+                }
             }
         }
     }
