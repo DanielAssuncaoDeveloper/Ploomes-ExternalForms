@@ -19,6 +19,8 @@ namespace ExternalForms_Domain.Services
         public async Task<RegistrationReponseDto> Register(FormModelDto formModel)
         {
             var record = new FormModelEntity();
+            
+            Validate(formModel);
             FillRecord(formModel, record);
 
             await _formModelRepository.Register(record);
@@ -36,7 +38,9 @@ namespace ExternalForms_Domain.Services
             if (record is null)
                 throw new DomainLayerException("Modelo de formulário não encontrado.");
 
+            Validate(formModel);
             FillRecord(formModel, record);
+
             await _formModelRepository.Save();
         }
 
@@ -53,12 +57,6 @@ namespace ExternalForms_Domain.Services
             {
                 IsInactive = record.IsInactive
             };
-        }
-
-        private void FillRecord(FormModelDto formModelDto, FormModelEntity record)
-        {
-            record.Name = formModelDto.Name.Trim();
-            record.Description = formModelDto.Description.Trim();
         }
 
         public async Task<List<FormModelQueryDto>> Consult(FormModelQueryFiltersDto queryFilter)
@@ -88,6 +86,18 @@ namespace ExternalForms_Domain.Services
                 }).Skip(QueryFiltersUtils.PaginationRecords(queryFilter))
                 .Take(queryFilter.Limit)
             );
+        }
+
+        private void Validate(FormModelDto formModel)
+        {
+            if (string.IsNullOrWhiteSpace(formModel.Name))
+                throw new DomainLayerException("Nome do Modelo de Formulário não informado.");
+        }
+
+        private void FillRecord(FormModelDto formModel, FormModelEntity record)
+        {
+            record.Name = formModel.Name.Trim();
+            record.Description = formModel.Description.Trim();
         }
     }
 }
