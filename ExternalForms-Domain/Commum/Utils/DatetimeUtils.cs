@@ -3,6 +3,6 @@
     public static class DatetimeUtils
     {
         public static DateTime GetDateTime() =>
-            DateTime.UtcNow.AddHours(3);
+            DateTime.UtcNow.AddHours(-3);
     }
 }

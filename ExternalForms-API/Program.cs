@@ -1,5 +1,8 @@
 using ExternalForms_API.HandlerExceptions;
 using ExternalForms_Data.Database;
+using ExternalForms_Data.Repositories;
+using ExternalForms_Domain.Agreements.Repositories;
+using ExternalForms_Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,9 @@ builder.Services.AddScoped(x =>
     new DatabaseConnection(
         builder.Configuration.GetConnectionString("ExternalForms") ?? "")
     );
+
+builder.Services.AddScoped<FormModelService>();
+builder.Services.AddScoped<IFormModelRepository, FormModelRepository>();
 
 builder.Services.AddControllers();
 
