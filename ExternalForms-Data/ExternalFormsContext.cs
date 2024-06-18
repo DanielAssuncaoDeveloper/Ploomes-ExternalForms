@@ -75,7 +75,7 @@ namespace ExternalForms_Data
                 Database.OpenConnection();
                 Database.CloseConnection();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new DataLayerException("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.");
             }
