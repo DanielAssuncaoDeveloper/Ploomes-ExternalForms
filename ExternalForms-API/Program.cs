@@ -1,3 +1,4 @@
+using ExternalForms_API.Extensions;
 using ExternalForms_API.HandlerExceptions;
 using ExternalForms_Data.Database;
 using ExternalForms_Data.Repositories;
@@ -12,8 +13,7 @@ builder.Services.AddScoped(x =>
         builder.Configuration.GetConnectionString("ExternalForms") ?? "")
     );
 
-builder.Services.AddScoped<FormModelService>();
-builder.Services.AddScoped<IFormModelRepository, FormModelRepository>();
+builder.Services.ResolveDependencies();
 
 builder.Services.AddControllers();
 
