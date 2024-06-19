@@ -7,7 +7,8 @@
 1. [Objetivo do Projeto](#objetivo-do-projeto)
    1. [Tipos de Campos](#tipos-de-campos)
       - [Múltiplas Seleções vs. Múltipla Escolha](#múltiplas-seleções-vs-múltipla-escolha)
-2. [Rotas da API](#rotas-da-api)
+2. [Informações sobre o projeto](#rotas-da-api)
+3. [Rotas da API](#rotas-da-api)
    1. [Formulários](#formulários)
       - [Criar Formulário](#criar-formulário)
       - [Listar Formulários](#listar-formulários)
@@ -55,4 +56,16 @@ Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **M�
 ### Servidor
 - **URL Base**: `https://externalformsapi.azurewebsites.net`
 
+### Modelagem do BD
+![image](https://github.com/DanielAssuncaoDeveloper/Ploomes-ExternalForms/assets/119459482/a583c657-1127-4edc-918b-481f5976ae98)
 
+---
+
+## Rotas da API
+### Formulários
+
+#### Criar Formulário
+URL: /api/FormModel
+Método: POST
+Descrição: Cria um novo formulário.
+Corpo da Requisição:
