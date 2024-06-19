@@ -276,9 +276,9 @@ Resposta de Sucesso:
 ---
 <br>
 
-## Tipos de Campos
+## Tipos de Campo
 
-### Listar Tipos de Campos
+### Listar Tipos de Campo
 
 - URL: `/api/TypeField` </br>
 - Método: <b>GET</b>
