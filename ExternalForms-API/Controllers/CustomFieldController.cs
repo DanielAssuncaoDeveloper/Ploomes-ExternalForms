@@ -54,6 +54,7 @@ namespace ExternalForms_API.Controllers
         ///     - 200: Status de ativação do Campo Customizado
         ///     - 400: Mensagem de validação
         /// </returns>
+        [HttpPut("{id}/ChangeActivation")]
         public async Task<ActionResult<ChangeActivationResponseDto>> ChangeActivation(int id) =>
             Ok(await _customFieldService.ChangeActivation(id));
 

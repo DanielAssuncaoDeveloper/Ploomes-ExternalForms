@@ -41,32 +41,8 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = (int)FieldTypeEnum.PARAGRAPH,
-                    Name = "Parágrafo",
-                    DataType = DataTypeEnum.TEXT,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
                     Id = (int)FieldTypeEnum.SIMPLE_NUMBER,
                     Name = "Número simples",
-                    DataType = DataTypeEnum.NUMERIC,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = (int)FieldTypeEnum.CURRENCY,
-                    Name = "Moeda",
-                    DataType = DataTypeEnum.NUMERIC,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = (int)FieldTypeEnum.PERCENTAGE,
-                    Name = "Percentual",
                     DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
                     CreatedAt = new DateTime(2024, 06, 16)
@@ -76,14 +52,6 @@ namespace ExternalForms_Data.Mapping
                     Id = (int)FieldTypeEnum.DATETIME,
                     Name = "Data e hora",
                     DataType = DataTypeEnum.DATETIME,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = (int)FieldTypeEnum.YES_OR_NOT,
-                    Name = "Sim ou Não",
-                    DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
                     CreatedAt = new DateTime(2024, 06, 16)
                 },
