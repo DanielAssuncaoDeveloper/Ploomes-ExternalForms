@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExternalForms_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/FormModel/[controller]")]
     [ApiController]
     public class CustomFieldController : Controller
     {
@@ -20,14 +20,14 @@ namespace ExternalForms_API.Controllers
         public async Task<ActionResult<RegistrationReponseDto>> Register([FromBody] CustomFieldDto customField, int idFormModel) =>
             Ok(await _customFieldService.Register(customField, idFormModel));
 
-        [HttpPut("/api/FormModel/CustomField/{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult> Update([FromBody] CustomFieldDto customField, int id)
         {
             await _customFieldService.Update(customField, id);
             return Ok();
         }
 
-        [HttpPut("/api/FormModel/CustomField/{id}/ChangeActivation")]
+        [HttpPut("{id}/ChangeActivation")]
         public async Task<ActionResult<ChangeActivationResponseDto>> ChangeActivation(int id) =>
             Ok(await _customFieldService.ChangeActivation(id));
 
