@@ -405,7 +405,7 @@ namespace ExternalForms_Data.Migrations
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.AnswerField.AnswerFieldEntity", b =>
                 {
-                    b.HasOne("ExternalForms_Domain.Entities.Archive.ArchiveEntity", "ArchiveAnswer")
+                    b.HasOne("ExternalForms_Domain.Entities.Archive.ArchiveEntity", "Archive")
                         .WithMany("AnswerFields")
                         .HasForeignKey("AnswerArchiveId");
 
@@ -423,7 +423,7 @@ namespace ExternalForms_Data.Migrations
 
                     b.Navigation("Answer");
 
-                    b.Navigation("ArchiveAnswer");
+                    b.Navigation("Archive");
 
                     b.Navigation("CustomField");
                 });

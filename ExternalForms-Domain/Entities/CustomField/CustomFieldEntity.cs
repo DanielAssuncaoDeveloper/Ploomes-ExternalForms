@@ -1,6 +1,7 @@
 ﻿using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.FieldType;
 using ExternalForms_Domain.Entities.FormModel;
+using ExternalForms_Domain.Entities.MultipleSelection;
 
 namespace ExternalForms_Domain.Entities.CustomField
 {
@@ -16,6 +17,7 @@ namespace ExternalForms_Domain.Entities.CustomField
         public FormModelEntity FormModel { get; set; }
         public FieldTypeEntity FieldType { get; set; }
 
-        public IEnumerable<AnswerFieldEntity> AnswerFields { get; set; }
+        public List<AnswerFieldEntity> AnswerFields { get; set; }
+        public List<MultipleSelectionEntity> MultipleSelections { get; set; }
     }
 }

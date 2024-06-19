@@ -39,8 +39,8 @@ namespace ExternalForms_Data.Mapping
                 .HasColumnName("datetime_answer")
                 .HasColumnType("datetime");
 
-            builder.Property(x => x.AnswerArchiveId)
-                .HasColumnName("answer_archive_id")
+            builder.Property(x => x.AnswerMultipleSelectionId)
+                .HasColumnName("answer_multiple_selection_id")
                 .HasColumnType("int");
 
             builder.HasOne(x => x.Answer)
@@ -51,9 +51,9 @@ namespace ExternalForms_Data.Mapping
                 .WithMany(relationshipTable => relationshipTable.AnswerFields)
                 .HasForeignKey(principalTable => principalTable.CustomFieldId);
 
-            builder.HasOne(x => x.ArchiveAnswer)
+            builder.HasOne(x => x.MultipleSelection)
                 .WithMany(relationshipTable => relationshipTable.AnswerFields)
-                .HasForeignKey(principalTable => principalTable.AnswerArchiveId);
+                .HasForeignKey(principalTable => principalTable.AnswerMultipleSelectionId);
         }
     }
 }

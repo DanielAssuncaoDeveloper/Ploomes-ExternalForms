@@ -31,13 +31,13 @@ namespace ExternalForms_Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AnswerArchiveId")
-                        .HasColumnType("int")
-                        .HasColumnName("answer_archive_id");
-
                     b.Property<int>("AnswerId")
                         .HasColumnType("int")
                         .HasColumnName("answer_id");
+
+                    b.Property<int?>("AnswerMultipleSelectionId")
+                        .HasColumnType("int")
+                        .HasColumnName("answer_multiple_selection_id");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime")
@@ -51,7 +51,7 @@ namespace ExternalForms_Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("data_type");
 
-                    b.Property<DateTime>("DatetimeAnswer")
+                    b.Property<DateTime?>("DatetimeAnswer")
                         .HasColumnType("datetime")
                         .HasColumnName("datetime_answer");
 
@@ -77,9 +77,9 @@ namespace ExternalForms_Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnswerArchiveId");
-
                     b.HasIndex("AnswerId");
+
+                    b.HasIndex("AnswerMultipleSelectionId");
 
                     b.HasIndex("CustomFieldId");
 
@@ -116,48 +116,6 @@ namespace ExternalForms_Data.Migrations
                     b.HasIndex("FormModelId");
 
                     b.ToTable("answers", (string)null);
-                });
-
-            modelBuilder.Entity("ExternalForms_Domain.Entities.Archive.ArchiveEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("Extension")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar")
-                        .HasDefaultValue("")
-                        .HasColumnName("extension");
-
-                    b.Property<bool>("IsInactive")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_inactive");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar")
-                        .HasDefaultValue("")
-                        .HasColumnName("name");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("archives", (string)null);
                 });
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.CustomField.CustomFieldEntity", b =>
@@ -305,22 +263,6 @@ namespace ExternalForms_Data.Migrations
                         },
                         new
                         {
-                            Id = 7,
-                            CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataType = 2,
-                            IsInactive = false,
-                            Name = "Data"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataType = 2,
-                            IsInactive = false,
-                            Name = "Hora"
-                        },
-                        new
-                        {
                             Id = 9,
                             CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataType = 1,
@@ -331,7 +273,7 @@ namespace ExternalForms_Data.Migrations
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataType = 0,
+                            DataType = 3,
                             IsInactive = false,
                             Name = "Multiplas seleções"
                         },
@@ -339,17 +281,9 @@ namespace ExternalForms_Data.Migrations
                         {
                             Id = 11,
                             CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataType = 0,
-                            IsInactive = false,
-                            Name = "Multipla escolha"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2024, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataType = 3,
                             IsInactive = false,
-                            Name = "Arquivo"
+                            Name = "Multipla escolha"
                         });
                 });
 
@@ -361,10 +295,6 @@ namespace ExternalForms_Data.Migrations
                         .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ArchiveImageId")
-                        .HasColumnType("int")
-                        .HasColumnName("image_archive_id");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime")
@@ -395,22 +325,60 @@ namespace ExternalForms_Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArchiveImageId");
-
                     b.ToTable("form_models", (string)null);
+                });
+
+            modelBuilder.Entity("ExternalForms_Domain.Entities.MultipleSelection.MultipleSelectionEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("created_at");
+
+                    b.Property<int>("CustomFieldId")
+                        .HasColumnType("int")
+                        .HasColumnName("custom_field_id");
+
+                    b.Property<bool>("IsInactive")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_inactive");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar")
+                        .HasDefaultValue("")
+                        .HasColumnName("name");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomFieldId");
+
+                    b.ToTable("multiple_selections", (string)null);
                 });
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.AnswerField.AnswerFieldEntity", b =>
                 {
-                    b.HasOne("ExternalForms_Domain.Entities.Archive.ArchiveEntity", "ArchiveAnswer")
-                        .WithMany("AnswerFields")
-                        .HasForeignKey("AnswerArchiveId");
-
                     b.HasOne("ExternalForms_Domain.Entities.Answers.AnswerEntity", "Answer")
                         .WithMany("AnswerFields")
                         .HasForeignKey("AnswerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ExternalForms_Domain.Entities.MultipleSelection.MultipleSelectionEntity", "MultipleSelection")
+                        .WithMany("AnswerFields")
+                        .HasForeignKey("AnswerMultipleSelectionId");
 
                     b.HasOne("ExternalForms_Domain.Entities.CustomField.CustomFieldEntity", "CustomField")
                         .WithMany("AnswerFields")
@@ -420,9 +388,9 @@ namespace ExternalForms_Data.Migrations
 
                     b.Navigation("Answer");
 
-                    b.Navigation("ArchiveAnswer");
-
                     b.Navigation("CustomField");
+
+                    b.Navigation("MultipleSelection");
                 });
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.Answers.AnswerEntity", b =>
@@ -455,13 +423,15 @@ namespace ExternalForms_Data.Migrations
                     b.Navigation("FormModel");
                 });
 
-            modelBuilder.Entity("ExternalForms_Domain.Entities.FormModel.FormModelEntity", b =>
+            modelBuilder.Entity("ExternalForms_Domain.Entities.MultipleSelection.MultipleSelectionEntity", b =>
                 {
-                    b.HasOne("ExternalForms_Domain.Entities.Archive.ArchiveEntity", "ArchiveImage")
-                        .WithMany("FormModels")
-                        .HasForeignKey("ArchiveImageId");
+                    b.HasOne("ExternalForms_Domain.Entities.CustomField.CustomFieldEntity", "CustomField")
+                        .WithMany("MultipleSelections")
+                        .HasForeignKey("CustomFieldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("ArchiveImage");
+                    b.Navigation("CustomField");
                 });
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.Answers.AnswerEntity", b =>
@@ -469,16 +439,11 @@ namespace ExternalForms_Data.Migrations
                     b.Navigation("AnswerFields");
                 });
 
-            modelBuilder.Entity("ExternalForms_Domain.Entities.Archive.ArchiveEntity", b =>
-                {
-                    b.Navigation("AnswerFields");
-
-                    b.Navigation("FormModels");
-                });
-
             modelBuilder.Entity("ExternalForms_Domain.Entities.CustomField.CustomFieldEntity", b =>
                 {
                     b.Navigation("AnswerFields");
+
+                    b.Navigation("MultipleSelections");
                 });
 
             modelBuilder.Entity("ExternalForms_Domain.Entities.FieldType.FieldTypeEntity", b =>
@@ -491,6 +456,11 @@ namespace ExternalForms_Data.Migrations
                     b.Navigation("Answers");
 
                     b.Navigation("CustomFields");
+                });
+
+            modelBuilder.Entity("ExternalForms_Domain.Entities.MultipleSelection.MultipleSelectionEntity", b =>
+                {
+                    b.Navigation("AnswerFields");
                 });
 #pragma warning restore 612, 618
         }

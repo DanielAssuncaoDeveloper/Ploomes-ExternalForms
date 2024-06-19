@@ -1,4 +1,5 @@
-using ExternalForms_Data;
+using ExternalForms_API.Extensions;
+using ExternalForms_API.HandlerExceptions;
 using ExternalForms_Data.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddScoped(x =>
         builder.Configuration.GetConnectionString("ExternalForms") ?? "")
     );
 
+builder.Services.ResolveDependencies();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseProblemDetailsExceptionHandler();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
