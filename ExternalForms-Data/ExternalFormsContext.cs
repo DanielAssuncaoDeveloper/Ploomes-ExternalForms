@@ -41,12 +41,13 @@ namespace ExternalForms_Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnswerMapping).Assembly);
         }
 
+        // Sobrescrevendo SaveChanges para aplicar tratamento nos dados das tabelas 
+        // antes de serem gravados no banco de dados
         public override int SaveChanges()
         {
             FillStandardFields();
             return base.SaveChanges();
         }
-
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             FillStandardFields();

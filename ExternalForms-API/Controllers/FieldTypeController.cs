@@ -15,6 +15,13 @@ namespace ExternalForms_API.Controllers
             _fieldTypeService = fieldTypeService;
         }
 
+        /// <summary>
+        /// Rota para realizar a consulta dos Tipos de Campos presentes para a vinculação dos Campos Customizados.
+        /// </summary>
+        /// <returns>
+        ///     - 200: Lista com os dados dos Tipos de Campos
+        ///     - 400: Mensagem de validação
+        /// </returns>
         [HttpGet]
         public async Task<ActionResult<List<FieldTypeQueryDto>>> Consult() =>
             Ok(await _fieldTypeService.Consult());

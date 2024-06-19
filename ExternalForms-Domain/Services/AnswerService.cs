@@ -8,8 +8,6 @@ using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.Answers;
 using ExternalForms_Domain.Entities.FieldType.Enum;
 using ExternalForms_Domain.Exceptions;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace ExternalForms_Domain.Services
 {
@@ -55,6 +53,7 @@ namespace ExternalForms_Domain.Services
 
         public async Task<List<AnswerQueryDto>> Consult(int idFormModel)
         {
+            // Consultando primeiramente as Respostas do Modelo de Formulário
             var answerQueries = await _answerRepository.GetList(
                     _answerRepository.GetQuery()
                         .Where(x => x.FormModelId == idFormModel)
@@ -67,11 +66,16 @@ namespace ExternalForms_Domain.Services
 
             foreach (var answer in answerQueries)
             {
+                // Preenchendo os respectivos Campos de Resposta
                 var answerFields = await _answerFieldRepository.GetList(
                             _answerFieldRepository.GetQuery()
                             .Where(x => x.AnswerId == answer.Id)
                         );
 
+               /*
+                Como as respostas de Multipla Seleção, são informadas pela tabela de Campo de Resposta,
+                para não repetir os registros de forma desnecessária, é preciso realizar o agrupamento pelo Campo Customizado.
+                */ 
                 answer.AnswerFields =
                     answerFields.GroupBy(x => x.CustomField)
                     .Select(x =>
@@ -136,6 +140,8 @@ namespace ExternalForms_Domain.Services
             var formModel = await _formModelRepository.GetById(idFormModel);
 
             var customFieldsAnswers = answerField.Select(x => x.CustomFieldId).ToList();
+            
+            // Consultando os Campos Customizados marcados como *Obrigatórios*
             var requiredCustomFields = await _customFieldRepository.GetList(
                     _customFieldRepository.GetQuery()
                         .Where(x =>
@@ -144,6 +150,7 @@ namespace ExternalForms_Domain.Services
                         )
                     );
 
+            // Verificando se existe algum campo obrigatório que não foi informado
             var fieldNotFill = requiredCustomFields.FirstOrDefault(x => !customFieldsAnswers.Contains(x.Id));
             if (fieldNotFill is not null)
                 throw new DomainLayerException($"O campo obrigatório {fieldNotFill.Name} não foi preenchido.");
@@ -155,6 +162,8 @@ namespace ExternalForms_Domain.Services
 
             foreach (var answerField in answer.AnswerFields)
             {
+                // Caso o Tipo de Campo seja de Multipla Seleção, faz a inclusão
+                // de N Campos de Resposta (Um campo de resposta para cada opção selecionada)
                 if (answerField.DataType == DataTypeEnum.MULTIPLE_SELECTION)
                 {
                     if (answerField.MultipleSelectionsIdAnswer is null ||

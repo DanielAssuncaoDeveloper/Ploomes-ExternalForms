@@ -4,6 +4,9 @@ using ExternalForms_Domain.Services;
 
 namespace ExternalForms_API.Extensions
 {
+    /// <summary>
+    /// Classe para realizar as injeções de dependência do projeto.
+    /// </summary>
     public static class IServiceCollectionExtension
     {
         public static void ResolveDependencies(this IServiceCollection services)

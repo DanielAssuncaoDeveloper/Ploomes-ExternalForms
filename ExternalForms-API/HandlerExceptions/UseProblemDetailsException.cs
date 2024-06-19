@@ -7,6 +7,9 @@ using System.Net;
 
 namespace ExternalForms_API.HandlerExceptions
 {
+    /// <summary>
+    /// Middleware para capturar as Exceptions lançadas ao decorrer do programa
+    /// </summary>
     internal static class UseProblemDetailsException
     {
         internal static void UseProblemDetailsExceptionHandler(this IApplicationBuilder app)
@@ -31,6 +34,7 @@ namespace ExternalForms_API.HandlerExceptions
             string message = string.Empty;
             var statusCode = HttpStatusCode.BadRequest;
 
+            // Verificando as Exceptions customizadas para aplicar tratamento na resposta
             switch (exception)
             {
                 case ApiLayerException apiLayerException:
@@ -51,13 +55,12 @@ namespace ExternalForms_API.HandlerExceptions
                     break;
             }
 
-            // Todo: Registrar log para exceptions não mapeadas
-
             await ChangeHttpResponse(context, message, statusCode);
         }
 
         private static async Task ChangeHttpResponse(HttpContext context, string message, HttpStatusCode httpStatus)
         {
+            // Alterando o reponse da rota para a mensagem de erro enviada
             context.Response.StatusCode = (int)httpStatus;
             context.Response.ContentType = "application/problem+json";
 

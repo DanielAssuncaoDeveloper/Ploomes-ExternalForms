@@ -127,8 +127,11 @@ namespace ExternalForms_Domain.Services
             if (fieldType is null)
                 throw new DomainLayerException("Tipo de campo não encontrado.");
 
+
             if (fieldType.DataType == DataTypeEnum.MULTIPLE_SELECTION)
             {
+                // Caso o Tipo de Campo seja de Multiplas Seleções, deve obrigatóriamente ter 
+                // uma Opção de Seleção informada
                 if (customField.MultipleSelections is null || 
                     customField.MultipleSelections.Count == 0)
                     throw new DomainLayerException("Campos de seleção não informados.");

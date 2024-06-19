@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExternalForms_Data.Repositories.Commum
 {
+    /// <summary>
+    /// Método de repositório genérico 
+    /// </summary>
+    /// <typeparam name="TEntity">Tabela de Entidade que utilizará o repositório.</typeparam>
     public abstract class RepositoryBase<TEntity> where TEntity : EntityBase
     {
         protected readonly ExternalFormsContext _dbContext;
