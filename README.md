@@ -48,6 +48,13 @@ Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **M�
 - **Múltiplas Seleções**: Permite que o usuário selecione diversas opções na resposta.
 - **Múltipla Escolha**: Permite que o usuário selecione somente uma das opções disponíveis.
 
+## Tipos de Dados
+Os Tipos de Dados de Resposta presentes nos sitema são:
+- `DataType:` 0 - (**Textos**)
+- `DataType:` 1 - (**Números**)
+- `DataType:` 2 - (**Datas e Horas**)
+- `DataType:` 3 - (**Opções de seleção**)
+
 ---
 
 
