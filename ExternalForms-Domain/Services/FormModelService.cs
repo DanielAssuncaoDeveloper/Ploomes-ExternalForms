@@ -64,9 +64,6 @@ namespace ExternalForms_Domain.Services
         {
             var query = _formModelRepository.GetQuery();
 
-            if (queryFilter.Id != 0)
-                query = query.Where(x => x.Id == queryFilter.Id);
-
             if (!string.IsNullOrWhiteSpace(queryFilter.Name))
                 query = query.Where(x => x.Name.Contains(queryFilter.Name.Trim()));
 

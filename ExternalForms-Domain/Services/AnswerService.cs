@@ -72,38 +72,48 @@ namespace ExternalForms_Domain.Services
                             .Where(x => x.AnswerId == answer.Id)
                         );
 
-               /*
-                Como as respostas de Multipla Seleção, são informadas pela tabela de Campo de Resposta,
-                para não repetir os registros de forma desnecessária, é preciso realizar o agrupamento pelo Campo Customizado.
-                */ 
-                answer.AnswerFields =
-                    answerFields.GroupBy(x => x.CustomField)
-                    .Select(x =>
-                        new AnswerFieldQueryDto()
+                /*
+                 Como as respostas de Multipla Seleção, são informadas pela tabela de Campo de Resposta,
+                 para não repetir os registros de forma desnecessária, é preciso realizar o agrupamento pelo Campo Customizado.
+                 */
+                var group =
+                    answerFields.GroupBy(
+                        x => x.CustomField.Id,
+                        (customFieldId, answer) => new
                         {
-                            CustomField = new CommumObjectDto()
-                            {
-                                Id = x.Key.Id,
-                                Name = x.Key.Name
-                            },
-                            FieldType = new CommumObjectDto()
-                            {
-                                Id = x.Key.FieldType.Id,
-                                Name = x.Key.FieldType.Name
-                            },
-                            DatetimeAnswer = x.Max(x => x.DatetimeAnswer),
-                            NumericAnswer = x.Max(x => x.NumericAnswer),
-                            TextAnswer = x.Max(x => x.TextAnswer) ?? "",
-                            MultipleSelectedAnswer = x.Max(x => x.AnswerMultipleSelectionId).GetValueOrDefault() != 0
-                                ? x.Select(y =>
-                                    new CommumObjectDto()
-                                    {
-                                        Id = y.MultipleSelection.Id,
-                                        Name = y.MultipleSelection.Name
-                                    }).ToList()
-                                : new List<CommumObjectDto>()
+                            Key = customFieldId,
+                            AnwerFieds = answer,
+                            FieldType = answer.FirstOrDefault().CustomField.FieldType,
+                            CustomField = answer.FirstOrDefault().CustomField
                         }
-                    ).ToList();
+                    );
+
+                answer.AnswerFields = group.Select(x =>
+                      new AnswerFieldQueryDto()
+                      {
+                          CustomField = new CommumObjectDto()
+                          {
+                              Id = x.CustomField.Id,
+                              Name = x.CustomField.Name
+                          },
+                          FieldType = new CommumObjectDto()
+                          {
+                              Id = x.FieldType.Id,
+                              Name = x.FieldType.Name
+                          },
+                          DatetimeAnswer = x.AnwerFieds.Max(x => x.DatetimeAnswer),
+                          NumericAnswer = x.AnwerFieds.Max(x => x.NumericAnswer),
+                          TextAnswer = x.AnwerFieds.Max(x => x.TextAnswer) ?? "",
+                          MultipleSelectedAnswer = x.AnwerFieds.Max(x => x.AnswerMultipleSelectionId).GetValueOrDefault() != 0
+                              ? x.AnwerFieds.Select(y =>
+                                  new CommumObjectDto()
+                                  {
+                                      Id = y.MultipleSelection.Id,
+                                      Name = y.MultipleSelection.Name
+                                  }).ToList()
+                              : new List<CommumObjectDto>()
+                      }
+                  ).ToList();
             }
 
             return answerQueries;
@@ -115,6 +125,9 @@ namespace ExternalForms_Domain.Services
             if (formModel is null)
                 throw new DomainLayerException("Modelo de formulário não encontrado.");
 
+            if (formModel.IsInactive)
+                throw new DomainLayerException($"O Modelo de formulário {formModel.Name} foi inativado.");
+
             await ValidateRequiredCustomFields(answer.AnswerFields, idFormModel);
 
             foreach (var answerField in answer.AnswerFields)
@@ -122,6 +135,9 @@ namespace ExternalForms_Domain.Services
                 var customField = await _customFieldRepository.GetById(answerField.CustomFieldId);
                 if (customField is null)
                     throw new DomainLayerException("Campo customizado não encontrado.");
+
+                if (customField.IsInactive)
+                    throw new DomainLayerException($"O Campo customizado {customField.Name} foi inativado.");
 
                 if (customField.FormModelId != formModel.Id)
                     throw new DomainLayerException($"O campo customizado {customField.Name} não é referente ao fomulário {formModel.Name}.");

@@ -76,9 +76,9 @@ namespace ExternalForms_Domain.Services
             };
         }
 
-        public async Task<List<CustomFieldQueryDto>> Consult(QueryFiltersBaseDto queryFilters)
+        public async Task<List<CustomFieldQueryDto>> Consult(QueryFiltersBaseDto queryFilters, int idFormModel)
         {
-            var query = _customFieldRepository.GetQuery();
+            var query = _customFieldRepository.GetQuery().Where(x => x.FormModelId == idFormModel);
 
             if (!queryFilters.ShowInactivated)
                 query = query.Where(x => !x.IsInactive);

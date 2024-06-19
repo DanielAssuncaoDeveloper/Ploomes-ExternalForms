@@ -68,8 +68,8 @@ namespace ExternalForms_API.Controllers
         ///     - 400: Mensagem de validação
         /// </returns>
         [HttpGet("/api/FormModel/{idFormModel}/CustomField/")]
-        public async Task<ActionResult<List<CustomFieldQueryDto>>> Consult([FromQuery] QueryFiltersBaseDto queryFilters) =>
-            Ok(await _customFieldService.Consult(queryFilters));
+        public async Task<ActionResult<List<CustomFieldQueryDto>>> Consult([FromQuery] QueryFiltersBaseDto queryFilters, int idFormModel) =>
+            Ok(await _customFieldService.Consult(queryFilters, idFormModel));
 
     }
 }
