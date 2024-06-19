@@ -91,7 +91,7 @@ namespace ExternalForms_Domain.Services
         private void Validate(FormModelDto formModel)
         {
             if (string.IsNullOrWhiteSpace(formModel.Name))
-                throw new DomainLayerException("Nome do Modelo de Formulário não informado.");
+                throw new DomainLayerException("Nome do modelo de formulário não informado.");
         }
 
         private void FillRecord(FormModelDto formModel, FormModelEntity record)

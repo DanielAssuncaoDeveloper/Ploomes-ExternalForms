@@ -15,6 +15,7 @@ namespace ExternalForms_Data.Repositories
         public override async Task<CustomFieldEntity?> GetById(int id) =>
             await _dbContext.CustomField
                 .Include(x => x.MultipleSelections)
+                .Include(x => x.FieldType)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public override IQueryable<CustomFieldEntity> GetQuery() =>

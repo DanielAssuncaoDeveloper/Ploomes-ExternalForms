@@ -1,6 +1,7 @@
 ﻿using ExternalForms_Data.Mapping.Commum;
 using ExternalForms_Domain.Commum.Enums;
 using ExternalForms_Domain.Entities.FieldType;
+using ExternalForms_Domain.Entities.FieldType.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -32,7 +33,7 @@ namespace ExternalForms_Data.Mapping
             {
                 new FieldTypeEntity()
                 {
-                    Id = 1,
+                    Id = (int)FieldTypeEnum.SIMPLE_TEXT,
                     Name = "Texto simples",
                     DataType = DataTypeEnum.TEXT,
                     IsInactive = false,
@@ -40,7 +41,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 2,
+                    Id = (int)FieldTypeEnum.PARAGRAPH,
                     Name = "Parágrafo",
                     DataType = DataTypeEnum.TEXT,
                     IsInactive = false,
@@ -48,7 +49,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 3,
+                    Id = (int)FieldTypeEnum.SIMPLE_NUMBER,
                     Name = "Número simples",
                     DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
@@ -56,7 +57,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 4,
+                    Id = (int)FieldTypeEnum.CURRENCY,
                     Name = "Moeda",
                     DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
@@ -64,7 +65,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 5,
+                    Id = (int)FieldTypeEnum.PERCENTAGE,
                     Name = "Percentual",
                     DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
@@ -72,7 +73,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 6,
+                    Id = (int)FieldTypeEnum.DATETIME,
                     Name = "Data e hora",
                     DataType = DataTypeEnum.DATETIME,
                     IsInactive = false,
@@ -80,23 +81,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 7,
-                    Name = "Data",
-                    DataType = DataTypeEnum.DATETIME,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = 8,
-                    Name = "Hora",
-                    DataType = DataTypeEnum.DATETIME,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = 9,
+                    Id = (int)FieldTypeEnum.YES_OR_NOT,
                     Name = "Sim ou Não",
                     DataType = DataTypeEnum.NUMERIC,
                     IsInactive = false,
@@ -104,7 +89,7 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 10,
+                    Id = (int)FieldTypeEnum.MULTIPLE_SELECT,
                     Name = "Multiplas seleções",
                     DataType = DataTypeEnum.MULTIPLE_SELECTION,
                     IsInactive = false,
@@ -112,20 +97,12 @@ namespace ExternalForms_Data.Mapping
                 },
                 new FieldTypeEntity()
                 {
-                    Id = 11,
+                    Id = (int)FieldTypeEnum.MULTIPLE_CHOICE,
                     Name = "Multipla escolha",
                     DataType = DataTypeEnum.MULTIPLE_SELECTION,
                     IsInactive = false,
                     CreatedAt = new DateTime(2024, 06, 16)
-                },
-                new FieldTypeEntity()
-                {
-                    Id = 12,
-                    Name = "Arquivo",
-                    DataType = DataTypeEnum.ARCHIVE,
-                    IsInactive = false,
-                    CreatedAt = new DateTime(2024, 06, 16)
-                },
+                }
             });
 
         }

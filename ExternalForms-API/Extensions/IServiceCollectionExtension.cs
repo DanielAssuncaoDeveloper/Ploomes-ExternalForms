@@ -16,6 +16,13 @@ namespace ExternalForms_API.Extensions
 
             services.AddScoped<CustomFieldService>();
             services.AddScoped<ICustomFieldRepository, CustomFieldRepository>();
+
+            services.AddScoped<AnswerService>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+
+            services.AddScoped<IMultipleSelectionRepository, MultipleSelectionRepository>();
+            
+            services.AddScoped<IAnswerFieldRepository, AnswerFieldRepository>();
         }
     }
 }
