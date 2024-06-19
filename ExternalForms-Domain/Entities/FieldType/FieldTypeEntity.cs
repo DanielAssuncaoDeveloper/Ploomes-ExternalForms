@@ -8,6 +8,6 @@ namespace ExternalForms_Domain.Entities.FieldType
         public string Name { get; set; }
         public DataTypeEnum DataType { get; set; }
 
-        public IEnumerable<CustomFieldEntity> CustomFields { get; set; }
+        public List<CustomFieldEntity> CustomFields { get; set; }
     }
 }

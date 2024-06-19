@@ -1,5 +1,5 @@
 ﻿using ExternalForms_Domain.Agreements.Repositories;
-using ExternalForms_Domain.Commum.Enums;
+using ExternalForms_Domain.Commum.Utils;
 using ExternalForms_Domain.Dtos.Commum;
 using ExternalForms_Domain.Dtos.FieldType;
 
@@ -26,21 +26,10 @@ namespace ExternalForms_Domain.Services
                         DataType = new CommumObjectDto()
                         {
                             Id = (int)x.DataType,
-                            Name = GetDataType(x.DataType)
+                            Name = DataTypeUtils.GetDataType(x.DataType)
                         }
                     })
                 );
         }
-
-
-        private static string GetDataType(DataTypeEnum dataType) =>
-            dataType switch
-            {
-                DataTypeEnum.TEXT => "Textos",
-                DataTypeEnum.NUMERIC => "Números",
-                DataTypeEnum.DATETIME => "Datas e horas",
-                DataTypeEnum.ARCHIVE => "Arquivos",
-                _ => string.Empty
-            };
     }
 }

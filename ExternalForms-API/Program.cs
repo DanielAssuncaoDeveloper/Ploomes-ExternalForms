@@ -1,9 +1,6 @@
 using ExternalForms_API.Extensions;
 using ExternalForms_API.HandlerExceptions;
 using ExternalForms_Data.Database;
-using ExternalForms_Data.Repositories;
-using ExternalForms_Domain.Agreements.Repositories;
-using ExternalForms_Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +11,6 @@ builder.Services.AddScoped(x =>
     );
 
 builder.Services.ResolveDependencies();
-
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

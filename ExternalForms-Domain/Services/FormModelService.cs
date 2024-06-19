@@ -61,21 +61,21 @@ namespace ExternalForms_Domain.Services
 
         public async Task<List<FormModelQueryDto>> Consult(FormModelQueryFiltersDto queryFilter)
         {
-            var records = _formModelRepository.GetQuery();
+            var query = _formModelRepository.GetQuery();
 
             if (queryFilter.Id != 0)
-                records = records.Where(x => x.Id == queryFilter.Id);
+                query = query.Where(x => x.Id == queryFilter.Id);
 
             if (!string.IsNullOrWhiteSpace(queryFilter.Name))
-                records = records.Where(x => x.Name.Contains(queryFilter.Name.Trim()));
+                query = query.Where(x => x.Name.Contains(queryFilter.Name.Trim()));
 
             if (!string.IsNullOrWhiteSpace(queryFilter.Description))
-                records = records.Where(x => x.Description.Contains(queryFilter.Description.Trim()));
+                query = query.Where(x => x.Description.Contains(queryFilter.Description.Trim()));
 
             if (!queryFilter.ShowInactivated)
-                records = records.Where(x => !x.IsInactive);
+                query = query.Where(x => !x.IsInactive);
 
-            return await _formModelRepository.GetList(records.Select(x =>
+            return await _formModelRepository.GetList(query.Select(x =>
                 new FormModelQueryDto()
                 {
                     Id = x.Id,
@@ -96,8 +96,8 @@ namespace ExternalForms_Domain.Services
 
         private void FillRecord(FormModelDto formModel, FormModelEntity record)
         {
-            record.Name = formModel.Name.Trim();
-            record.Description = formModel.Description.Trim();
+            record.Name = formModel.Name;
+            record.Description = formModel.Description;
         }
     }
 }

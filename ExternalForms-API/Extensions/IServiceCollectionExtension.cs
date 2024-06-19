@@ -13,6 +13,9 @@ namespace ExternalForms_API.Extensions
             
             services.AddScoped<FieldTypeService>();
             services.AddScoped<IFieldTypeRepository, FieldTypeRepository>();
+
+            services.AddScoped<CustomFieldService>();
+            services.AddScoped<ICustomFieldRepository, CustomFieldRepository>();
         }
     }
 }

@@ -20,7 +20,6 @@ namespace ExternalForms_API.Controllers
         public async Task<ActionResult<RegistrationReponseDto>> Register([FromBody] FormModelDto formModel) =>
             Ok(await _formModelService.Register(formModel));
 
-
         [HttpPut("{id}")]
         public async Task<ActionResult> Update([FromBody] FormModelDto formModel, int id)
         {

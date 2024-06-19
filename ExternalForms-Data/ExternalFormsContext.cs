@@ -96,6 +96,24 @@ namespace ExternalForms_Data
                     continue;
                 }
 
+                // Percorrendo os campos da tabela para aplicar tratamentos
+                table.GetType().GetProperties().ToList().ForEach(p => 
+                { 
+                    // Tratando campos texto para não serem gravados como nulo 
+                    // e removendo espaços em branco no inicio e final da string
+                    if (p.PropertyType == typeof(string))
+                    {
+                        string? stringValue = p.GetValue(table) as string;
+                        if (stringValue is null)
+                            stringValue = string.Empty;
+
+                        stringValue = stringValue.Trim();
+                        p.SetValue(table, stringValue);
+                    }
+                });
+
+                // Verificando status de alteração da entidade
+                // para preencher a data de inclusão/alteração
                 if (entrieTracked.State == EntityState.Added)
                 {
                     table.CreatedAt = DatetimeUtils.GetDateTime();

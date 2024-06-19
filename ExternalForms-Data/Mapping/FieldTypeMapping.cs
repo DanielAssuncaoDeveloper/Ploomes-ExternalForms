@@ -106,7 +106,7 @@ namespace ExternalForms_Data.Mapping
                 {
                     Id = 10,
                     Name = "Multiplas seleções",
-                    DataType = DataTypeEnum.TEXT,
+                    DataType = DataTypeEnum.MULTIPLE_SELECTION,
                     IsInactive = false,
                     CreatedAt = new DateTime(2024, 06, 16)
                 },
@@ -114,7 +114,7 @@ namespace ExternalForms_Data.Mapping
                 {
                     Id = 11,
                     Name = "Multipla escolha",
-                    DataType = DataTypeEnum.TEXT,
+                    DataType = DataTypeEnum.MULTIPLE_SELECTION,
                     IsInactive = false,
                     CreatedAt = new DateTime(2024, 06, 16)
                 },
