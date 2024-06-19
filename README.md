@@ -42,12 +42,12 @@ Os Tipos de Campos pré-cadastrados no sistema são:
 - `TypeFieldId:` 11 - (**Múltipla Escolha**)
 
 ### Múltiplas Seleções vs. Múltipla Escolha
->
->Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **Múltipla >Escolha**. Eles permitem que o usuário inclua diversas opções para serem selecionadas na >resposta do formulário.
->
->- **Múltiplas Seleções**: Permite que o usuário selecione diversas opções na resposta.
->- **Múltipla Escolha**: Permite que o usuário selecione somente uma das opções disponíveis.
->
+
+Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **Múltipla Escolha**. Eles permitem que o usuário inclua diversas opções para serem selecionadas na resposta do formulário.
+
+- **Múltiplas Seleções**: Permite que o usuário selecione diversas opções na resposta.
+- **Múltipla Escolha**: Permite que o usuário selecione somente uma das opções disponíveis.
+
 ---
 
 
