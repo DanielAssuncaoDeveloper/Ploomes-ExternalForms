@@ -2,7 +2,7 @@
 ### Ploomes - Teste Técnico
 
 ---
-### Sumário
+## Sumário
 
 1. [Objetivo do Projeto](#objetivo-do-projeto)
    1. [Tipos de Campos](#tipos-de-campos)
@@ -27,7 +27,7 @@
 
 ---
 
-## Objetivo do Projeto
+# Objetivo do Projeto
 
 O objetivo deste projeto é replicar de forma simplificada um dos módulos do sistema de CRM da Ploomes: os **Formulários Externos**. Nesta versão, o fluxo de comportamento do sistema é baseado na criação de um **Modelo de Formulário**, fazendo o vínculo com os chamados **Campos Customizados**, que são campos baseados em tipos de dados que o usuário pode personalizar para cada formulário.
 
@@ -51,7 +51,7 @@ Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **M�
 ---
 
 
-## Informações sobre o projeto
+# Informações sobre o projeto
 
 ### Servidor
 - **URL Base**: `https://externalformsapi.azurewebsites.net`
@@ -61,13 +61,17 @@ Os tipos de campo mais diferenciados são os de **Múltiplas Seleções** e **M�
 
 ---
 
-## Rotas da API
-### Formulários
+# Rotas da API
+## Formulários
 
-#### Criar Formulário
+### Criar Formulário
 
-URL: `/api/FormModel`
-Método: POST
+URL: `/api/FormModel` </br>
+Método: <b>POST</b>
 
-##### Cria um novo formulário.
-Corpo da Requisição:
+Corpo da Requisição: 
+```json
+{
+
+}
+```
