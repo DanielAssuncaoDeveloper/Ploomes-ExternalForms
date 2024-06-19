@@ -24,14 +24,6 @@ namespace ExternalForms_Data.Mapping
                 .HasColumnName("description")
                 .HasColumnType("text")
                 .HasDefaultValue(string.Empty);
-
-            builder.Property(x => x.ArchiveImageId)
-                .HasColumnName("image_archive_id")
-                .HasColumnType("int");
-
-            builder.HasOne(x => x.ArchiveImage)
-                .WithMany(relationshipTable => relationshipTable.FormModels)
-                .HasForeignKey(principalTable => principalTable.ArchiveImageId);
         }
     }
 }

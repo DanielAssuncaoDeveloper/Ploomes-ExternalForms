@@ -4,7 +4,6 @@ using ExternalForms_Domain.Agreements.Entities;
 using ExternalForms_Domain.Commum.Utils;
 using ExternalForms_Domain.Entities.AnswerField;
 using ExternalForms_Domain.Entities.Answers;
-using ExternalForms_Domain.Entities.Archive;
 using ExternalForms_Domain.Entities.CustomField;
 using ExternalForms_Domain.Entities.FieldType;
 using ExternalForms_Domain.Entities.FormModel;
@@ -20,7 +19,6 @@ namespace ExternalForms_Data
 
         public DbSet<AnswerEntity> Answer { get; set; }
         public DbSet<AnswerFieldEntity> AnswerField { get; set; }
-        public DbSet<ArchiveEntity> Archive { get; set; }
         public DbSet<CustomFieldEntity> CustomField { get; set; }
         public DbSet<FieldTypeEntity> FieldType { get; set; }
         public DbSet<FormModelEntity> FormModel { get; set; }
@@ -75,7 +73,7 @@ namespace ExternalForms_Data
                 Database.OpenConnection();
                 Database.CloseConnection();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new DataLayerException("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.");
             }

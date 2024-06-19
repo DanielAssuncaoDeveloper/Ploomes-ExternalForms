@@ -10,7 +10,6 @@ namespace ExternalForms_Domain.Commum.Utils
                 DataTypeEnum.TEXT => "Textos",
                 DataTypeEnum.NUMERIC => "Números",
                 DataTypeEnum.DATETIME => "Datas e horas",
-                DataTypeEnum.ARCHIVE => "Arquivos",
                 DataTypeEnum.MULTIPLE_SELECTION => "Multipla seleção",
                 _ => string.Empty
             };

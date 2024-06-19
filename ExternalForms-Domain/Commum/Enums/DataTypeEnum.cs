@@ -5,7 +5,6 @@
         TEXT,
         NUMERIC,
         DATETIME,
-        ARCHIVE,
         MULTIPLE_SELECTION
     }
 }

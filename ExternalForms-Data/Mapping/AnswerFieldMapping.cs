@@ -39,10 +39,6 @@ namespace ExternalForms_Data.Mapping
                 .HasColumnName("datetime_answer")
                 .HasColumnType("datetime");
 
-            builder.Property(x => x.AnswerArchiveId)
-                .HasColumnName("answer_archive_id")
-                .HasColumnType("int");
-
             builder.Property(x => x.AnswerMultipleSelectionId)
                 .HasColumnName("answer_multiple_selection_id")
                 .HasColumnType("int");
@@ -54,10 +50,6 @@ namespace ExternalForms_Data.Mapping
             builder.HasOne(x => x.CustomField)
                 .WithMany(relationshipTable => relationshipTable.AnswerFields)
                 .HasForeignKey(principalTable => principalTable.CustomFieldId);
-
-            builder.HasOne(x => x.Archive)
-                .WithMany(relationshipTable => relationshipTable.AnswerFields)
-                .HasForeignKey(principalTable => principalTable.AnswerArchiveId);
 
             builder.HasOne(x => x.MultipleSelection)
                 .WithMany(relationshipTable => relationshipTable.AnswerFields)
