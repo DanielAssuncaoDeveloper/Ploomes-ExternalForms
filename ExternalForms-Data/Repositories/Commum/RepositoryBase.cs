@@ -6,7 +6,7 @@ namespace ExternalForms_Data.Repositories.Commum
 {
     public abstract class RepositoryBase<TEntity> where TEntity : EntityBase
     {
-        private readonly ExternalFormsContext _dbContext;
+        protected readonly ExternalFormsContext _dbContext;
 
         public RepositoryBase(DatabaseConnection connection)
         {

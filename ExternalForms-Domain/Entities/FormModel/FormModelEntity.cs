@@ -11,8 +11,8 @@ namespace ExternalForms_Domain.Entities.FormModel
 
         public int? ArchiveImageId { get; set; }
         public ArchiveEntity ArchiveImage { get; set; }
-        public IEnumerable<CustomFieldEntity> CustomFields { get; set; }
-        public IEnumerable<AnswerEntity> Answers { get; set; }
+        public List<CustomFieldEntity> CustomFields { get; set; }
+        public List<AnswerEntity> Answers { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@ namespace ExternalForms_Domain.Entities.Archive
         public string Name { get; set; }
         public string Extension { get; set; }
 
-        public IEnumerable<FormModelEntity> FormModels { get; set; }
-        public IEnumerable<AnswerFieldEntity> AnswerFields { get; set; }
+        public List<FormModelEntity> FormModels { get; set; }
+        public List<AnswerFieldEntity> AnswerFields { get; set; }
     }
 }

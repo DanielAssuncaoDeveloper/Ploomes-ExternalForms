@@ -8,6 +8,6 @@ namespace ExternalForms_Domain.Entities.Answers
         public int FormModelId { get; set; }
 
         public FormModelEntity FormModel { get; set; }
-        public IEnumerable<AnswerFieldEntity> AnswerFields { get; set; }
+        public List<AnswerFieldEntity> AnswerFields { get; set; }
     }
 }
