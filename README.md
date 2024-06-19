@@ -3,6 +3,13 @@
 
 ---
 
+1. [Objetivo do Projeto](#objetivo-do-projeto)
+   1. [Tipos de Campos](#tipos-de-campos)
+      - [Múltiplas Seleções vs. Múltipla Escolha](#múltiplas-seleções-vs-múltipla-escolha)
+
+
+---
+
 ## Objetivo do Projeto
 
 O objetivo deste projeto é replicar de forma simplificada um dos módulos do sistema de CRM da Ploomes: os **Formulários Externos**. Nesta versão, o fluxo de comportamento do sistema é baseado na criação de um **Modelo de Formulário**, fazendo o vínculo com os chamados **Campos Customizados**, que são campos baseados em tipos de dados que o usuário pode personalizar para cada formulário.
