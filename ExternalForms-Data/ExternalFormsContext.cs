@@ -76,7 +76,7 @@ namespace ExternalForms_Data
             }
             catch (Exception)
             {
-                throw new DataLayerException("Não foi possivel acessar o banco de dados. Verifique os dados de conexão.");
+                throw new DataLayerException("Não foi possivel acessar o banco de dados. Tente novamente mais tarde.");
             }
         }
 
